@@ -11,6 +11,7 @@ import {
   Alert,
 } from "react-native";
 import { useState } from "react";
+import Greet from "./components/Greet";
 
 const logoImage = require("./assets/adaptive-icon.png");
 
@@ -29,6 +30,7 @@ export default function App() {
         hidden={istatusVisible}
       />
       <ScrollView>
+        <Greet name="Abanoub" />
         <Button
           title="Show/Hide the Status Bar"
           color="black"
