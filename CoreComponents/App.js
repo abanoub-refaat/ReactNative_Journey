@@ -1,4 +1,4 @@
-import { View, Text, Image, ScrollView } from "react-native";
+import { View, Text, Image, ScrollView, Button, Pressable } from "react-native";
 
 const logoImage = require("./assets/adaptive-icon.png");
 
@@ -6,33 +6,26 @@ export default function App() {
   return (
     <View style={{ flex: 1, backgroundColor: "plum", padding: 60 }}>
       <ScrollView>
-        <Image source={logoImage} style={{ width: 200, height: 200 }} />
-        <Text>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-          mollitia, molestiae quas vel sint commodi repudiandae consequuntur
-          voluptatum laborum numquam blanditiis harum quisquam eius sed odit
-          fugiat iusto fuga praesentium optio, eaque rerum! Provident similique
-          accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut
-          molestias architecto voluptate aliquam nihil, eveniet aliquid culpa
-          officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum
-          nesciunt ipsum debitis quas aliquid. Reprehenderit, quia. Quo neque
-          error repudiandae fuga? Ipsa laudantium molestias eos sapiente
-          officiis modi at sunt excepturi expedita sint? Sed quibusdam
-          recusandae alias error harum maxime adipisci amet laborum.
-          Perspiciatis minima nesciunt dolorem! Officiis iure rerum voluptates a
-          cumque velit quibusdam sed amet tempora. Sit laborum ab, eius fugit
-          doloribus tenetur fugiat, temporibus enim commodi iusto libero magni
-          deleniti quod quam consequuntur! Commodi minima excepturi repudiandae
-          velit hic maxime doloremque. Quaerat provident commodi consectetur
-          veniam similique ad earum omnis ipsum saepe, voluptas, hic voluptates
-          pariatur est explicabo fugiat, dolorum eligendi quam cupiditate
-          excepturi mollitia maiores labore suscipit quas? Nulla, placeat.
-          Voluptatem quaerat non architecto ab laudantium modi minima sunt esse
-          temporibus sint culpa, recusandae aliquam numquam totam ratione
-          voluptas quod exercitationem fuga. Possimus quis earum veniam quasi
-          aliquam eligendi, placeat qui corporis!
-        </Text>
-        <Image source={logoImage} style={{ width: 200, height: 200 }} />
+        <Button
+          title="Press"
+          onPress={() => console.log("Pressed!")}
+          color="midnightblue"
+        />
+        <Pressable
+          onPress={() => console.log("Image pressed")}
+          onPressIn={() => console.log("Image pressed in")}
+          onPressOut={() => console.log("Image pressed out")}
+          onLongPress={() => console.log("Image long pressed")}
+        >
+          <Image source={logoImage} style={{ width: 300, height: 300 }} />
+        </Pressable>
+        <Pressable onPress={() => console.log("Text pressd")}>
+          <Text>
+            lorem ipsum dolor sit amet, woth ,saova afaifjalfja iofsfjoasjf
+            sfjajfaj oa tah aotiah aojaib sijoetush saosg gosjg ogj oijgs
+            joishgs ao jsh sjgossohryvs vert s soseij sh ser s s
+          </Text>
+        </Pressable>
       </ScrollView>
     </View>
   );
