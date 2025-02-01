@@ -1,31 +1,41 @@
-import { View, Text, Image, ScrollView, Button, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  Button,
+  Pressable,
+  Modal,
+} from "react-native";
+import { useState } from "react";
 
 const logoImage = require("./assets/adaptive-icon.png");
 
 export default function App() {
+  const [isModalVisible, setModalVisibility] = useState(false);
   return (
     <View style={{ flex: 1, backgroundColor: "plum", padding: 60 }}>
       <ScrollView>
         <Button
           title="Press"
-          onPress={() => console.log("Pressed!")}
+          onPress={() => setModalVisibility(true)}
           color="midnightblue"
         />
-        <Pressable
-          onPress={() => console.log("Image pressed")}
-          onPressIn={() => console.log("Image pressed in")}
-          onPressOut={() => console.log("Image pressed out")}
-          onLongPress={() => console.log("Image long pressed")}
+        <Modal
+          visible={isModalVisible}
+          onRequestClose={() => setModalVisibility(false)}
+          animationType="slide"
+          presentationStyle="pageSheet"
         >
-          <Image source={logoImage} style={{ width: 300, height: 300 }} />
-        </Pressable>
-        <Pressable onPress={() => console.log("Text pressd")}>
-          <Text>
-            lorem ipsum dolor sit amet, woth ,saova afaifjalfja iofsfjoasjf
-            sfjajfaj oa tah aotiah aojaib sijoetush saosg gosjg ogj oijgs
-            joishgs ao jsh sjgossohryvs vert s soseij sh ser s s
-          </Text>
-        </Pressable>
+          <View style={{ flex: 1, backgroundColor: "lightblue", padding: 60 }}>
+            <Text> Modal Content</Text>
+            <Button
+              title="Close"
+              color="midnightblue"
+              onPress={() => setModalVisibility(false)}
+            />
+          </View>
+        </Modal>
       </ScrollView>
     </View>
   );
