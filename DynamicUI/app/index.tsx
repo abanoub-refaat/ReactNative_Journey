@@ -1,43 +1,31 @@
-import { useState, useEffect } from "react";
-import { StyleSheet, View, Text, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  useWindowDimensions,
+  SafeAreaView,
+} from "react-native";
 
 export default function App() {
-  const [dimensions, setDimensions] = useState({
-    window: Dimensions.get("window"),
-  });
-
-  useEffect(() => {
-    const subscription = Dimensions.addEventListener("change", ({ window }) => {
-      setDimensions({ window });
-    });
-    return () => subscription?.remove();
-  });
-
-  const { window } = dimensions;
-  const windowWidth = window.width;
-  const windowHeight = window.height;
+  const windowWidth = useWindowDimensions().width;
+  const windowHeight = useWindowDimensions().height;
 
   return (
-    <View style={styles.container}>
-      <View
-        style={[
-          styles.box,
-          {
-            width: windowWidth > 500 ? "70%" : "90%",
-            height: windowHeight > 600 ? "60%" : "90%",
-          },
-        ]}
-      >
-        <Text style={{ fontSize: windowWidth > 500 ? 50 : 24 }}>Hello!</Text>
+    <SafeAreaView style={styles.safeContaner}>
+      <View style={styles.container}>
+        <View style={[styles.box]}>
+          <Text style={styles.text}>Hello!</Text>
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
-// const windowWidth = Dimensions.get("window").width;
-// const windowHeight = Dimensions.get("window").height;
-
 const styles = StyleSheet.create({
+  safeContaner: {
+    flex: 1,
+    backgroundColor: "lightblue",
+  },
   container: {
     flex: 1,
     backgroundColor: "lightblue",
@@ -45,13 +33,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   box: {
-    // width: windowWidth > 500 ? "70%" : "90%",
-    // height: windowHeight > 600 ? "60%" : "90%",
     backgroundColor: "pink",
     alignItems: "center",
     justifyContent: "center",
+    padding: 20,
   },
-  //   text: {
-  //     fontSize: windowWidth > 500 ? 50 : 30,
-  //   },
+  text: {
+    fontSize: 24,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
 });
