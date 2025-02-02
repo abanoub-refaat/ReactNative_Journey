@@ -4,7 +4,9 @@ import {
   Text,
   useWindowDimensions,
   SafeAreaView,
+  Platform,
 } from "react-native";
+import CustomButton from "../components/CustomButton";
 
 export default function App() {
   const windowWidth = useWindowDimensions().width;
@@ -15,6 +17,7 @@ export default function App() {
       <View style={styles.container}>
         <View style={[styles.box]}>
           <Text style={styles.text}>Hello!</Text>
+          <CustomButton title="press me" onPress={() => alert("hello")} />
         </View>
       </View>
     </SafeAreaView>
@@ -29,17 +32,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "lightblue",
-    alignItems: "center",
-    justifyContent: "center",
+    paddingTop: Platform.OS === "android" ? 25 : 0,
   },
   box: {
-    backgroundColor: "pink",
-    alignItems: "center",
-    justifyContent: "center",
     padding: 20,
   },
   text: {
-    fontSize: 24,
+    ...Platform.select({
+      ios: {
+        color: "purple",
+        fontSize: 24,
+        fontStyle: "italic",
+      },
+      android: {
+        color: "red",
+        fontSize: 30,
+        fontStyle: "normal",
+      },
+    }),
     fontWeight: "bold",
     textAlign: "center",
   },
